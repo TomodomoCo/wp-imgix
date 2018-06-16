@@ -1,0 +1,19 @@
+{
+  "name": "tomodomoco/tomodomo-wp-imgix",
+  "description": "Imgix functions and integrations for WordPress",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "homepage": "https://tomodomo.co/",
+  "authors": [
+    {
+      "name": "Chris Van Patten",
+      "homepage": "https://www.chrisvanpatten.com/"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}

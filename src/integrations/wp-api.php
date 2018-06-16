@@ -42,7 +42,7 @@ function register_parameters() {
  * @param WP_REST_Request $request
  * @return array
  */
-function get_parameter_mindful( $post, $field_name, \WP_REST_Request $request ) {
+function get_parameter_imgix( $post, $field_name, \WP_REST_Request $request ) {
 	$url = get_the_post_thumbnail_url( $post['id'], 'full' );
 
 	return get_images( $url );

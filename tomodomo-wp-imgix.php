@@ -15,5 +15,4 @@ namespace Tomodomo\Plugin\WP_Imgix;
 require 'src/functions.php';
 
 // Integrations
-include 'src/integrations/timber.php';
 include 'src/integrations/wp-api.php';

@@ -14,18 +14,18 @@ use function Tomodomo\Plugin\WP_Imgix\Functions\get_images;
 use function Tomodomo\Plugin\WP_Imgix\Functions\get_images_by_id;
 
 add_filter( 'tomodomo/wp_imgix/sizes', function( $sizes ) {
-	$size = [
-		'large' => [
-			'4:3' => [
-				'w' => '800',
-				'h' => '600',
-			],
-			'16:9' => [
-				'w' => '800',
-				'h' => '600',
-			]
+	$sizes['large'] = [
+		'4:3' => [
+			'w' => '800',
+			'h' => '600',
+		],
+		'16:9' => [
+			'w' => '800',
+			'h' => '600',
 		],
 	];
+
+	return $sizes;
 } );
 
 /**

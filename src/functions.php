@@ -3,13 +3,22 @@
 namespace Tomodomo\Plugin\WP_Imgix\Functions;
 
 /**
+ * Get the valid image sizes
+ *
+ * @return array
+ */
+function get_image_sizes() {
+	return apply_filters( 'tomodomo/wp_imgix/sizes', [] );
+}
+
+/**
  * Get a formatted image URL
  *
  * @param string $url
  * @param array $args
  * @return string
  */
-function get_image_url( $url, $args = [] ) {
+function build_image_url( $url, $args = [] ) {
 	// Set our basic defaults
 	$defaults = apply_filters( 'tomodomo/wp_imgix/default_args', [
 		'q'   => '80',
@@ -31,19 +40,10 @@ function get_image_url( $url, $args = [] ) {
  * @param array $args
  * @return string
  */
-function get_image_url_by_id( $id, $args ) {
+function build_image_url_by_id( $id, $args ) {
 	$image = wp_get_attachment_image_src( $id, 'full' );
 
-	return get_image_url( $image[0], $args );
-}
-
-/**
- * Get the valid image sizes
- *
- * @return array
- */
-function get_image_sizes() {
-	return apply_filters( 'tomodomo/wp_imgix/sizes', [] );
+	return build_image_url( $image[0], $args );
 }
 
 /**
@@ -68,7 +68,7 @@ function get_images( $url ) {
 			}
 
 			// Set the parsed URL
-			$images[$size][$ratio] = get_image_url( $url, $args );
+			$images[$size][$ratio] = build_image_url( $url, $args );
 		}
 	}
 
@@ -83,4 +83,28 @@ function get_images_by_id( $id ) {
 	$image = wp_get_attachment_image_src( $id, 'full' );
 
 	return get_images( $image[0] );
+}
+
+/**
+ * @param string $url
+ * @param string $size
+ * @param string $ratio
+ * @return string
+ */
+function get_image( $url, $size, $ratio ) {
+	$images = get_images( $url );
+
+	return $images[$size][$ratio] ?? '';
+}
+
+/**
+ * @param string $url
+ * @param string $size
+ * @param string $ratio
+ * @return string
+ */
+function get_image_by_id( $id, $size, $ratio ) {
+	$images = get_images_by_id( $id );
+
+	return $images[$size][$ratio] ?? '';
 }
